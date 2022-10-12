@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'Components/Gender.dart';
+import 'Components/Layout.dart';
+import 'Constants.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -8,6 +12,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  var selectedGender;
+  Color maleColorCard = inactive;
+  Color femaleColorCard = inactive;
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,22 +30,80 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Row(
               children: [
                 Expanded(
-                    child: ContainerBox(
-                  colour: Color(0xFF1D1E33),
-                  cardChild: Column(
-                    children: [],
+                    child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedGender = genderType.male;
+                    });
+                  },
+                  child: ContainerBox(
+                    colour:
+                        selectedGender == genderType.male ? active : inactive,
+                    cardChild: GenderCard(
+                      icon: FontAwesomeIcons.mars,
+                      gender: 'MALE',
+                    ),
                   ),
                 )),
                 Expanded(
-                    child: ContainerBox(
-                  colour: Color(0xFF1D1E33),
+                    child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedGender = genderType.female;
+                    });
+                  },
+                  child: ContainerBox(
+                    colour:
+                        selectedGender == genderType.female ? active : inactive,
+                    cardChild: GenderCard(
+                      icon: FontAwesomeIcons.venus,
+                      gender: 'FEMALE',
+                    ),
+                  ),
                 ))
               ],
             ),
           ),
           Expanded(
             child: ContainerBox(
-              colour: Color(0xFF1D1E33),
+              colour: active,
+              cardChild: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'HEIGHT',
+                    textAlign: TextAlign.center,
+                    style: textLable,
+                  ),
+                  hr,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: lgTextLable,
+                      ),
+                      Text(
+                        'cm',
+                        style: textLable,
+                      )
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    onChanged: (double val) {
+                      setState(() {
+                        height = val.toInt();
+                      });
+                    },
+                    min: 80,
+                    max: 220,
+                  )
+                ],
+              ),
             ),
           ),
           Expanded(
@@ -45,33 +111,17 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(
                     child: ContainerBox(
-                  colour: Color(0xFF1D1E33),
+                  colour: inactive,
                 )),
                 Expanded(
                     child: ContainerBox(
-                  colour: Color(0xFF1D1E33),
+                  colour: inactive,
                 ))
               ],
             ),
           ),
         ]),
       ),
-    );
-  }
-}
-
-class ContainerBox extends StatelessWidget {
-  ContainerBox({required this.colour, this.cardChild});
-
-  final Color colour;
-  final Widget? cardChild;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          color: colour, borderRadius: BorderRadius.circular(15.0)),
     );
   }
 }
