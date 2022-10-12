@@ -16,7 +16,7 @@ const varmdTextLable = TextStyle(
 const varxlTextLable = TextStyle(
     fontSize: 65.0, fontWeight: FontWeight.bold, color: Color(0xFF8D8E98));
 const vartextLable =
-    TextStyle(color: Colors.red, fontSize: 20.0, fontWeight: FontWeight.w900);
+    TextStyle(color: Colors.red, fontSize: 15.0, fontWeight: FontWeight.w900);
 
 const active = Color(0xFF1D1E33);
 const inactive = Color(0xFF111328);

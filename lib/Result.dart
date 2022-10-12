@@ -3,14 +3,13 @@ import 'package:bmicalculator/Constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class MyResult extends StatefulWidget {
-  const MyResult({super.key});
+class MyResult extends StatelessWidget {
+  MyResult(
+      {required this.Bmi, required this.GetResult, required this.GetGuidance});
+  final String Bmi;
+  final String GetResult;
+  final String GetGuidance;
 
-  @override
-  State<MyResult> createState() => _MyResultState();
-}
-
-class _MyResultState extends State<MyResult> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,17 +37,20 @@ class _MyResultState extends State<MyResult> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'Normal'.toUpperCase(),
+                      GetResult.toUpperCase(),
                       style: varmdTextLable,
                     ),
                     Text(
-                      '10000',
+                      Bmi,
                       style: varxlTextLable,
                     ),
-                    Text(
-                      '*NOTE : You have More weight Than Other Exercise Daily',
-                      style: vartextLable,
-                      textAlign: TextAlign.center,
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Text(
+                        '*NOTE : ${GetGuidance}',
+                        style: vartextLable,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ],
                 ),
@@ -77,32 +79,6 @@ class _MyResultState extends State<MyResult> {
         ),
       ),
     );
+    ;
   }
 }
-
-
-
-
-
-
-
-
-// Expanded(
-//               child: GestureDetector(
-//                 onTap: () {
-//                   Navigator.pop(context);
-//                 },
-//                 child: Container(
-//                   color: Color(0xFFEB1555),
-//                   height: 50.0,
-//                   width: double.infinity,
-//                   child: Center(
-//                     child: Text(
-//                       'RE-CALCULATE',
-//                       textAlign: TextAlign.center,
-//                       style: mdTextLable,
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ),
