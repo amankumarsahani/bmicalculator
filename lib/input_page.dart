@@ -130,12 +130,20 @@ class _MyHomePageState extends State<MyHomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RoundBtn(
-                              icon: FontAwesomeIcons.plus,
-                            ),
+                                icon: FontAwesomeIcons.plus,
+                                onPressed: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                }),
                             vw,
                             RoundBtn(
-                              icon: FontAwesomeIcons.minus,
-                            )
+                                icon: FontAwesomeIcons.minus,
+                                onPressed: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                })
                           ],
                         )
                       ]),
@@ -147,7 +155,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         "AGE",
                         style: textLable,
                       ),
@@ -161,10 +169,20 @@ class _MyHomePageState extends State<MyHomePage> {
                         children: [
                           RoundBtn(
                             icon: FontAwesomeIcons.plus,
+                            onPressed: () {
+                              setState(() {
+                                age++;
+                              });
+                            },
                           ),
                           vw,
                           RoundBtn(
                             icon: FontAwesomeIcons.minus,
+                            onPressed: () {
+                              setState(() {
+                                age--;
+                              });
+                            },
                           )
                         ],
                       )
@@ -192,21 +210,5 @@ class _MyHomePageState extends State<MyHomePage> {
         ]),
       ),
     );
-  }
-}
-
-class RoundBtn extends StatelessWidget {
-  RoundBtn({required this.icon});
-  final IconData icon;
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-        child: Icon(icon),
-        shape: CircleBorder(),
-        fillColor: Color(0xFF4C4F5E),
-        constraints: BoxConstraints.tightFor(height: 50.0, width: 50.0),
-        onPressed: (() {
-          print('hi');
-        }));
   }
 }
