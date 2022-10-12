@@ -1,3 +1,4 @@
+import 'package:bmicalculator/Home.dart';
 import 'package:flutter/material.dart';
 import 'input_page.dart';
 import 'Result.dart';
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => MyHomePage(),
+        '/': (context) => const MyHomePage(),
         '/result': (context) => MyResult(),
       },
       title: 'Flutter Demo',
@@ -24,7 +25,6 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color(0xFF0A0E21),
         appBarTheme: AppBarTheme(backgroundColor: Color(0xFF0A0E21)),
       ),
-      // home: const MyHomePage(),
     );
   }
 }
