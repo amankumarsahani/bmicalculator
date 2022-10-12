@@ -101,6 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     min: 80,
                     max: 220,
+                    activeColor: Color(0xFFEB1555),
+                    inactiveColor: Color(0xFF8D8E98),
                   )
                 ],
               ),
@@ -111,17 +113,100 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 Expanded(
                     child: ContainerBox(
-                  colour: inactive,
+                  colour: active,
+                  cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'WEIGHT',
+                          style: textLable,
+                        ),
+                        hr,
+                        Text(
+                          weight.toString(),
+                          style: lgTextLable,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundBtn(
+                              icon: FontAwesomeIcons.plus,
+                            ),
+                            vw,
+                            RoundBtn(
+                              icon: FontAwesomeIcons.minus,
+                            )
+                          ],
+                        )
+                      ]),
                 )),
                 Expanded(
                     child: ContainerBox(
-                  colour: inactive,
-                ))
+                  colour: active,
+                  cardChild: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "AGE",
+                        style: textLable,
+                      ),
+                      hr,
+                      Text(
+                        age.toString(),
+                        style: lgTextLable,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundBtn(
+                            icon: FontAwesomeIcons.plus,
+                          ),
+                          vw,
+                          RoundBtn(
+                            icon: FontAwesomeIcons.minus,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                )),
               ],
             ),
           ),
+          GestureDetector(
+            child: Container(
+              color: Color(0xFFEB1555),
+              height: 50.0,
+              width: double.infinity,
+              child: Center(
+                child: Text(
+                  'CALCULATE',
+                  textAlign: TextAlign.center,
+                  style: mdTextLable,
+                ),
+              ),
+            ),
+            onTap: (() => {Navigator.pushNamed(context, '/result')}),
+          )
         ]),
       ),
     );
+  }
+}
+
+class RoundBtn extends StatelessWidget {
+  RoundBtn({required this.icon});
+  final IconData icon;
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+        child: Icon(icon),
+        shape: CircleBorder(),
+        fillColor: Color(0xFF4C4F5E),
+        constraints: BoxConstraints.tightFor(height: 50.0, width: 50.0),
+        onPressed: (() {
+          print('hi');
+        }));
   }
 }

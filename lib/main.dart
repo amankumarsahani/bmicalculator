@@ -12,13 +12,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => MyHomePage(),
+      },
       title: 'Flutter Demo',
       theme: ThemeData.dark().copyWith(
         primaryColor: Color(0xFF0A0E21),
         scaffoldBackgroundColor: Color(0xFF0A0E21),
         appBarTheme: AppBarTheme(backgroundColor: Color(0xFF0A0E21)),
       ),
-      home: const MyHomePage(),
+      // home: const MyHomePage(),
     );
   }
 }
